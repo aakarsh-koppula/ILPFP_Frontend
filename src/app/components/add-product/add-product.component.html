@@ -1,0 +1,73 @@
+<h3>Add new product</h3>
+<form name="tempForm" (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate [discountSmallerThanPrice]="['discountPrice', 'price']">
+    <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name"
+        [(ngModel)]="newProduct.name" #productName="ngModel" 
+        [ngClass]="{ 'is-invalid': productName.invalid }" required maxlength="64">
+        <div *ngIf="productName.invalid" class="invalid-feedback">
+            <div *ngIf="productName.errors?.['required']">Name is required</div>
+        </div>
+        <br>
+
+        <label for="department">Department</label>
+        <input type="text" class="form-control" id="department" name="department" placeholder="Department"
+        [(ngModel)]="newProduct.department" #department="ngModel" 
+        [ngClass]="{'is-invalid':department.invalid}" required>
+        <div *ngIf="department.invalid" class="invalid-feedback">
+            <div *ngIf="department.errors?.['required']">Department is required</div>
+        </div>
+        <br>
+
+        <label for="discountPrice">Price</label>
+        <input type="number" class="form-control" id="price" name="price" placeholder="Price"
+        [(ngModel)]="newProduct.price" #price="ngModel" 
+        [ngClass]="{'is-invalid':price.invalid}" required>
+        <div *ngIf="price.invalid" class="invalid-feedback">
+            <div *ngIf="price.errors?.['required']">Price is required</div>
+        </div>
+        <br>
+
+        <label for="discountPrice">Discount Price</label>
+        <input type="number" class="form-control" id="discountPrice" name="discountPrice" placeholder="Discount Price"
+        [(ngModel)]="newProduct.discountPrice" #discountPrice="ngModel" 
+        [ngClass]="{'is-invalid':discountPrice.invalid}" >
+        <div *ngIf="discountPrice.invalid" class="invalid-feedback">
+            <div *ngIf="discountPrice.errors?.['discountSmallerThanPrice']">Discount price must be smaller than price</div>
+        </div>
+        <br>
+
+        <label for="image">Product Image</label>
+        <input type="text" class="form-control" id="image" name="image" placeholder="Image Link"
+        [(ngModel)]="newProduct.image" #image="ngModel" 
+        [ngClass]="{'is-invalid':image.invalid}" required>
+        <div *ngIf="image.invalid" class="invalid-feedback">
+            <div *ngIf="image.errors?.['required']">Image is required</div>
+        </div>
+        <br>
+
+        <label for="description">Product Description</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Product Description"
+        [(ngModel)]="newProduct.description" #description="ngModel" 
+        [ngClass]="{'is-invalid':description.invalid}" required minlength="20">
+        <div *ngIf="description.invalid" class="invalid-feedback">
+            <div *ngIf="description.errors?.['required']">Description is required</div>
+            <div *ngIf="description.errors?.['minlength']">Description too short</div>
+        </div>
+        <br>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="isTopSelling" name="isTopSelling"
+            [(ngModel)]="newProduct.isTopSelling" #name="ngModel" >
+            <label class="form-check-label" for="isTopSelling">
+                Top Selling Product
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary"  [disabled]="!productForm.valid">Add New Product</button>
+
+</form>
+
+<div >
+    <span>{{newProduct|json}}</span>
+</div>

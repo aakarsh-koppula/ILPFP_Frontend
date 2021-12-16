@@ -1,0 +1,166 @@
+<div class="card" *ngIf="!payed">
+    <div class="row">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col">
+                        <h4><b>Shopping Cart</b></h4>
+                    </div>
+                    <div class="col align-self-center text-right text-muted">1 items</div>
+                </div>
+            </div>
+            <div class="row border-top border-bottom" *ngIf="!deleted">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img name="foodimage" alt="Card image" class="img-fluid" [src]="itemDetails.imageUrl"></div>
+                    <div class="col">
+                        
+                        <div class="row">{{itemDetails.dishName}}</div>
+                    </div>
+                    <div class="col"> {{itemDetails.cost | currency}} <button type="submit" (click)="hideorder()" class="close">&#10005;</button></div>
+                </div>
+            </div>
+            
+            
+            <div class="back-to-shop"><a href="/home">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+        </div>
+        <div class="col-md-4 gradient-custom summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" style="padding-left:0;">ITEMS 1</div>
+                <div class="col text-right">&#8377; {{itemDetails.cost}}</div>
+            </div>
+            <form>
+                <p>SHIPPING</p> <select>
+                    <option class="text-muted">Free Delivery- &#8377;0.00</option>
+                </select>
+            </form>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">TOTAL PRICE</div>
+                <div class="col text-right">&#8377; {{itemDetails.cost}}</div>
+            </div> <button (click)="onCheckout()" *ngIf="!deleted" class="btn">CHECKOUT</button>
+            <button (click)="onCheckout()" *ngIf="deleted" class="btn" disabled>CHECKOUT</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid px-0" id="bg-div" *ngIf="payed">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-12">
+            <div class="card card0">
+                <div class="d-flex" id="wrapper">
+                    <!-- Sidebar -->
+                    <div class="bg-light gradient-custom border-right" id="sidebar-wrapper">
+                        <div class="sidebar-heading pt-5 pb-4"><strong>PAY WITH</strong></div>
+                        <div class="list-group list-group-flush"> <a data-toggle="tab" href="#menu1" id="tab1" class="tabs list-group-item bg-light">
+                                <div class="list-div my-2">
+                                    <div class="fa fa-home"></div> &nbsp;&nbsp; Bank
+                                </div>
+                            </a> <a data-toggle="tab" href="#menu2" id="tab2" class="tabs list-group-item active1">
+                                <div class="list-div my-2">
+                                    <div class="fa fa-credit-card"></div> &nbsp;&nbsp; Card
+                                </div>
+                            </a> <a data-toggle="tab" href="#menu3" id="tab3" class="tabs list-group-item bg-light">
+                                <div class="list-div my-2">
+                                    <div class="fa fa-qrcode"></div> &nbsp;&nbsp;&nbsp; QR Code 
+                                </div>
+                            </a> </div>
+                    </div> <!-- Page Content -->
+                    <div id="page-content-wrapper">
+                        <div class="row pt-3" id="border-btm">
+                            
+                            <div class="col-8">
+                                <div class="row justify-content-right">
+                                    <div class="col-12">
+                                        <p class="mb-0 mr-4 mt-4 text-right">Email: robertdowney@xyz.com</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-right">
+                                    <div class="col-12">
+                                        <p class="mb-0 mr-4 text-right">Payment: <span class="top-highlight"> &#8377; {{itemDetails.cost}}</span> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="text-center" id="test">Pay</div>
+                        </div>
+                        <div class="tab-content">
+                            <div id="menu1" class="tab-pane">
+                                <div class="row justify-content-center">
+                                    <div class="col-11">
+                                        <div class="form-card">
+                                            <h3 class="mt-0 mb-4 text-center">Enter bank details to pay</h3>
+                                            <form onsubmit="event.preventDefault()">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="input-group"> <input type="text" id="bk_nm" value="BBB Bank"> <label>BANK NAME</label> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="input-group"> <input type="text" name="ben_nm" id="ben-nm" value="John Smith"> <label>BENEFICIARY NAME</label> </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="input-group"> <input type="text" name="scode" value="ABCDAB1S" class="placeicon" minlength="8" maxlength="11"> <label>SWIFT CODE</label> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12"> <button type="submit" (click)="onCartClick()" class="btn btn-success placeicon">Pay &#8377; {{itemDetails.cost}}</button> </div>
+                                                </div>
+                                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu2" class="tab-pane in active">
+                                <div class="row justify-content-center">
+                                    <div class="col-11">
+                                        <div class="form-card">
+                                            <h3 class="mt-0 mb-4 text-center">Enter your card details to pay</h3>
+                                            <form onsubmit="event.preventDefault()">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="input-group"> <input type="text" id="cr_no" value="4321 7654 5643 2341" minlength="19" maxlength="19"> <label>CARD NUMBER</label> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="input-group"> <input type="text" name="exp" id="exp" value="12/26" minlength="5" maxlength="5"> <label>CARD EXPIRY</label> </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="input-group"> <input type="password" name="cvcpwd" value="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3"> <label>CVV</label> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12"> <button type="submit" (click)="onCartClick()"  class="btn btn-success placeicon">Pay &#8377; {{itemDetails.cost}} </button>> </div>
+                                                </div>
+                                                <div class="row">
+                                                    
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu3" class="tab-pane">
+                                <div class="row justify-content-center">
+                                    <div class="col-11">
+                                        <h3 class="mt-0 mb-4 text-center">Scan the QR code to pay</h3>
+                                        <div class="row justify-content-center">
+                                            <div id="qr"> <img src="https://i.imgur.com/DD4Npfw.jpg" width="200px" height="200px"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
