@@ -1,0 +1,55 @@
+<section id="sec1"><div class="signup-form">
+    <form [formGroup] = "userForm" (ngSubmit)="onSubmit()">
+		<h2>Register</h2>
+		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
+        <div class="form-group">
+			<div class="row">
+				<div class="col-xs-6"><input formControlName="firstName" type="text" class="form-control" name="first_name" placeholder="First Name" [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['firstName'].errors}">
+                    <div *ngIf="isFormSubmitted && userFormControls['firstName'].errors" class="invalid-feedback">
+                        <div id="errorMessage" *ngIf="userFormControls['firstName'].errors['required']">First Name is required</div>
+                        </div>
+                </div>
+				<div class="col-xs-6"><input formControlName="lastName" type="text" class="form-control" name="last_name" placeholder="Last Name"  [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['lastName'].errors}">
+                    <div *ngIf="isFormSubmitted && userFormControls['lastName'].errors" class="invalid-feedback">
+                        <div id="errorMessage" *ngIf="userFormControls['lastName'].errors['required']">Last Name is required</div>
+                        </div>
+                </div>
+			</div>        	
+        </div>
+        <div class="form-group">
+        	<input formControlName="email" type="email" class="form-control" name="email" placeholder="Email" [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['email'].errors}">
+            <div *ngIf="isFormSubmitted && userFormControls['email'].errors" class="invalid-feedback">
+                <div id="errorMessage" *ngIf="userFormControls['email'].errors['required']">Email is required</div>
+                <div id="errorMessage" *ngIf="userFormControls['email'].errors['email']">Please enter a valid email</div>
+                </div>
+        </div>
+		<div class="form-group">
+            <input formControlName="pass" type="password" class="form-control" name="password" placeholder="Password" [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['pass'].errors}">
+            <div *ngIf="isFormSubmitted && userFormControls['pass'].errors" class="invalid-feedback">
+                <div id="errorMessage" *ngIf="userFormControls['pass'].errors['required']">Pasword is required</div>
+                <div id="errorMessage" *ngIf="userFormControls['pass'].errors['minlength']">Password should be atleast 6 characters</div>
+                </div>
+        
+        </div>
+		<div class="form-group">
+            <input formControlName="confirmPass" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"  [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['confirmPass'].errors}">
+            <div *ngIf="isFormSubmitted && userFormControls['confirmPass'].errors" class="invalid-feedback">
+                <div id="errorMessage" *ngIf="userFormControls['confirmPass'].errors['required']">Pasword is required</div>
+                <div id="errorMessage" *ngIf="userFormControls['confirmPass'].errors['mustMatch']">Passwords should match</div>
+                </div>
+        </div>        
+        <div class="form-group">
+			<label ><input formControlName="accept" type="checkbox"  [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['accept'].errors}"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+            <div *ngIf="isFormSubmitted && userFormControls['accept'].errors" class="invalid-feedback">
+                <div  *ngIf="userFormControls['accept'].errors['required']">Please accept terms and conditions</div> 
+                </div>
+        </div>
+		<div class="form-group">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+        </div>
+    </form>
+	<div class="text-center">Already have an account? <a href="/login">Sign in</a></div>
+</div>
+</section>
+
+
