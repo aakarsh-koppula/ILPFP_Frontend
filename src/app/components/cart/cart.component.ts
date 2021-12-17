@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IFoodItem} from 'src/app/models/foodItem.model'
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedCartService } from 'src/app/services/shared-cart.service';
+import { Order } from 'src/app/models/order';
+import { OrderAPIService } from 'src/app/services/order-api.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +12,11 @@ import { SharedCartService } from 'src/app/services/shared-cart.service';
 })
 export class CartComponent implements OnInit {
 
-  public itemDetails: IFoodItem;
   public cart:Product[];
   public payed: boolean;
   public deleted: boolean;
 
-  constructor(private activateRoute: ActivatedRoute, private sharedCart:SharedCartService) { 
-    this.itemDetails = {} as IFoodItem;
+  constructor(private activateRoute: ActivatedRoute, private sharedCart:SharedCartService, private orderAPI:OrderAPIService) { 
     this.payed = false;
     this.deleted = false;
     this.cart = [];
@@ -28,7 +27,18 @@ export class CartComponent implements OnInit {
   }
 
   public onCheckout(){
-    // 
+    // get email from cookie
+    const email = document.cookie.split("email=")[1];
+
+    // create order
+    var order:Order={
+      "user": email,
+      "isDelivered": false,
+      "cart":this.cart
+    }
+    this.orderAPI.postOrder(order).subscribe();
+    this.sharedCart.clearCart();
+    this.cart = this.sharedCart.getProducts();
   }
 
   public loadCart(): void{
@@ -40,23 +50,6 @@ export class CartComponent implements OnInit {
     this.cart = this.sharedCart.getProducts();
   }
 
-   public onCartClick():void{
-  //   this.router.navigate(['/track'],{
-  //     queryParams:{
-  //       id: this.itemDetails.id,
-  //       restaurant: this.itemDetails.restaurant,
-  //       dishName: this.itemDetails.dishName,
-  //       description: this.itemDetails.description,
-  //       rating: this.itemDetails.rating,
-  //       cost: this.itemDetails.cost,
-  //       imageUrl: this.itemDetails.imageUrl
-  //     }
-  //   })
-  }
-
-public hideorder(){
-  this.deleted = true;
-}
   public addProduct(){
     var product:Product={
       "name": "item1",

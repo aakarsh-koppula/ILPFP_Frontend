@@ -28,4 +28,9 @@ export class SharedCartService {
   getProducts() {
     return this.cart;
   }
+
+  clearCart(){
+    this.cart = [];
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
 }
