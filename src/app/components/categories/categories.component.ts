@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
   public hidden: Boolean;
   public query: string;
 
-  constructor(private activateRoute: ActivatedRoute, private searchResults: GetProductsService) 
+  constructor(private activateRoute: ActivatedRoute, private searchResults: GetProductsService)
   {
     this.itemDetails = [];
     this.itemDataLength = 0;
@@ -25,11 +25,11 @@ export class CategoriesComponent implements OnInit {
     this.query = '';
   }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.activateRoute.queryParamMap.subscribe((queryParams:any) =>{
       this.query = queryParams.get('query');
-      console.log(this.query);   
+      console.log(this.query);
     })
     this.getSearchResults();
   }
@@ -38,13 +38,13 @@ export class CategoriesComponent implements OnInit {
   {
 
     let body = new HttpParams()
-      .set('Category', this.query);
-    
+      .set('category', this.query);
+
     console.log(body.toString());
 
     // get users from json-server
     this.searchResults.searchProducts(body.toString()).toPromise()
-      .then( (data: IProductDetails[]) => 
+      .then( (data: IProductDetails[]) =>
       {
         this.itemDetails = data;
         console.log(data);
