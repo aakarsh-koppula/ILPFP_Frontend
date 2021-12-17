@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IFoodItem} from 'src/app/models/foodItem.model'
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/products';
+import {ProductDataService} from 'src/app/services/product-data.service';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +13,10 @@ export class HomeComponent implements OnInit {
 
   public fooditems: IFoodItem;
   public filteritem: string;
-  public itemarray: IFoodItem[];
-  constructor( private router: Router) {
+  public topProducts: Product[];
+  constructor( private router: Router, private topProductService:  ProductDataService) {
     this.fooditems = {} as IFoodItem;
-    this.itemarray = [];
+    this.topProducts = []
     this.filteritem="";
    }
    //[(NgModel)] ="filteritem"
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //this.initializeItems();
+    this.initializeTopProducts()
   }
 
   /* public initializeItems(){
@@ -58,5 +61,11 @@ export class HomeComponent implements OnInit {
     })
   } */
 
+  public initializeTopProducts(){
+    this.topProductService.getTopProducts().subscribe((response:Product[])=>{
+      this.topProducts = response;
+      console.log(this.topProducts)
+    })
 
+  }
 }

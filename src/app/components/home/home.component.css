@@ -1,7 +1,7 @@
 #cardgrid{
     float:left;
-    width:15%;
-    height:290px;
+    width:20%;
+    height:700px;
 }
 
 
@@ -60,13 +60,16 @@ body {
   } */
   
   .card {
-    height: 250px;
+    height: 350px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     background-size: cover !important;
     color: white;
     position: relative;
     border-radius: 5px;
     margin-bottom: 20px;
+  }
+  .card-text{
+    color: #000;
   }
   .card-user {
     position: absolute;
