@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public fooditems: IFoodItem;
   public filteritem: string;
   public topProducts: IProductDetails[];
+
   constructor( private router: Router, private topProductService:  ProductDataService) {
     this.fooditems = {} as IFoodItem;
     this.topProducts = []
