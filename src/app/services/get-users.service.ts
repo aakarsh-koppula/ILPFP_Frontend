@@ -16,11 +16,11 @@ export class GetUsersService
 
   public verifyUser(body: any): Observable<any>
   {
-    return this.http.post<any>('http://localhost:8080/users', body, {headers: new HttpHeaders( { 'Content-Type': 'application/x-www-form-urlencoded' } )});
+    return this.http.post<any>('http://localhost:3600/users', body, {headers: new HttpHeaders( { 'Content-Type': 'application/x-www-form-urlencoded' } )});
   }
 
   public createUser(body: any): Observable<any>
   {
-    return this.http.post<any>('http://localhost:8080/users/create', body, {headers: new HttpHeaders( { 'Content-Type': 'application/x-www-form-urlencoded' } )});
+    return this.http.post<any>('http://localhost:3600/users/add-user', body, {headers: new HttpHeaders( { 'Content-Type': 'application/x-www-form-urlencoded' } )});
   }
 }
