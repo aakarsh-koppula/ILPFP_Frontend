@@ -9,9 +9,12 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   public isLoggedIn: Boolean;
+  public filterName: String;
 
   constructor(private router: Router) 
   { 
+    this.filterName = "";
+
     // enable search only on the home page
     if (this.router.url === "/")
     {
@@ -57,4 +60,17 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  public navigateToResultsPage()
+  {
+    // we need to typecast to make typescript happy
+    this.filterName = (<HTMLInputElement>document.getElementById('search')).value;
+    this.router.navigate(['searchresults'],
+      {
+        queryParams:
+        {
+          query: this.filterName
+        }
+      }
+    );
+  }
 }
