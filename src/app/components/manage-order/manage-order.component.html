@@ -1,10 +1,10 @@
-<p>manage-order works!</p>
+
 <ul class="list-group list-group-flush">
     <li class="list-group-item" *ngFor="let order of orders">
-        <span [ngClass]="{'text-success' : order.status==='Delivered'}">
-            #{{order.id}}</span><br>
-        <span>{{order.email}}</span>
-        <button (click)="process(order)" [hidden]="order.status==='Delivered'">process</button>
-        <button (click)="delete(order)">delete</button>
+        <span [ngClass]="{'text-success' : order.isDelivered}">
+            #{{order._id}}</span><br>
+        <span>{{order.user}}</span>
+        <button (click)="process(order._id)" [hidden]="order.isDelivered">process</button>
+        <button (click)="delete(order._id)">delete</button>
     </li>
 </ul>
