@@ -1,4 +1,4 @@
-export interface Product{
+export interface IProductDetails{
     name?: string,
     department?: string,
     price?: number,

@@ -7,13 +7,16 @@
             <div class="account-settings">
                 <div class="user-profile">
                     <div class="user-avatar">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="No Img">
+                        <img [src]="formimage" alt="No Img">
                     </div>
                     <h5 class="user-name">{{fullname}}</h5>
                     <h6 class="user-name">{{emailid}}</h6>
                 </div>
+                <br>
+                <div *ngIf="isFormActive">URL:
+                <input  type="text" class="form-control" [(ngModel)]="img"></div>
                 <div class="about">
-                    <h5>Orders</h5>
+                    <!-- <h5>Orders</h5> -->
                     
                 </div>
             </div>
