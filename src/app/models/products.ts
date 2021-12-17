@@ -1,6 +1,6 @@
 export interface IProductDetails{
     name?: string,
-    department?: string,
+    category?: string,
     price?: number,
     discountPrice?: number,
     image?: string,

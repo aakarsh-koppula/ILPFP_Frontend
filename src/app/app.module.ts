@@ -19,6 +19,8 @@ import { HomeComponent } from './components/home/home.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { SearchPricePipe } from './pipes/search-price.pipe';
 import { SearchCategoriesPipe } from './pipes/search-categories.pipe';
+import { CategoriesComponent } from './components/categories/categories.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { SearchCategoriesPipe } from './pipes/search-categories.pipe';
     HomeComponent,
     EditProductComponent,
     SearchPricePipe,
-    SearchCategoriesPipe
+    SearchCategoriesPipe,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
