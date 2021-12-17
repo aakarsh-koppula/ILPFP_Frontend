@@ -51,6 +51,9 @@ export class LoginComponent implements OnInit {
     let email = this.form.get('email')!.value;
     let password = this.form.get('password')!.value;
 
+    // put email in a cookie so all our components can use it
+    document.cookie = "email=" + email + "; path=/";
+
     let body = new HttpParams()
       .set('email', email)
       .set('password', password);
