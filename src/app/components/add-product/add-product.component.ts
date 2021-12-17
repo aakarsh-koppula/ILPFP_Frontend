@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductDetails } from 'src/app/models/products';
 //import { ShareDataService } from '../../../services/share-data.service'
+import { ProductApiService } from 'src/app/services/product-api.service';
+import { Subscription } from 'rxjs';
+//import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-add-product',
@@ -10,10 +13,12 @@ import { IProductDetails } from 'src/app/models/products';
 export class AddProductComponent implements OnInit {
 
   public newProduct: IProductDetails;
+  //public newProduct: Product;
+  public productsSubscription: Subscription;
 
-  //private SharedData:ShareDataService
-  constructor() { 
+  constructor(private productsAPI:ProductApiService) { 
     this.newProduct = {};
+    this.productsSubscription = {} as Subscription;
   }
 
   ngOnInit(): void {
@@ -21,7 +26,7 @@ export class AddProductComponent implements OnInit {
 
   onSubmit():void{
     // add to database
+    this.productsAPI.postProducts(this.newProduct).subscribe();
     this.newProduct = {};
-    //console.log(this.SharedData.products);
   }
 }

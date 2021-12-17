@@ -1,9 +1,10 @@
 export interface IProductDetails{
+    _id?: String,
     name?: string,
-    department?: string,
+    category?: string,
     price?: number,
-    discountPrice?: number,
+    discount?: number,
     image?: string,
     description?: string,
-    isTopSelling?: boolean
+    isTopProduct?: boolean
 }

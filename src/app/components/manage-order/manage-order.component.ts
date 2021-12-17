@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderAPIService } from 'src/app/services/order-api.service';
+import { Subscription } from 'rxjs';
+import { Order } from '../../models/order';
 
 @Component({
   selector: 'app-manage-order',
@@ -7,54 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageOrderComponent implements OnInit {
 
-  public orders:any[]=[];
+  public orders:Order[];
+  public ordersSubscription: Subscription;
+  
 
-  constructor() { 
+  constructor(private ordersAPI:OrderAPIService) { 
+    this.ordersSubscription = {} as Subscription;
+    this.orders=[];
   }
 
   ngOnInit(): void {
-    //dummy data, should read from database
-    this.orders=[
-      {
-        id:123451234500001,
-        email:'dummy@test.com',
-        status:'In-process'
-      },
-      {
-        id:1234512345008964,
-        email:'dummy@test.com',
-        status:'Delivered'
-      },
-      {
-        id:123451234500002,
-        email:'dummy@test.com',
-        status:'In-process'
-      },
-      {
-        id:123451234500003,
-        email:'dummy@test.com',
-        status:'In-process'
-      },
-      {
-        id:123451234500004,
-        email:'dummy@test.com',
-        status:'Delivered'
-      }
-    ];
+    // get orders from database
+    this.ordersAPI.getOrders().subscribe((response:Order[])=>{
+      this.orders = response;
+      // sort
+      this.orders.sort((a:Order, b:Order)=> (a.isDelivered === b.isDelivered)? 0 : a.isDelivered? 1 : -1);
+    })
 
-    this.orders.sort((a:any, b:any)=> (a.status > b.status? -1 : 1));
   }
 
-  process(product:any){
-    product.status='Delivered';
-    this.orders.sort((a:any, b:any)=> (a.status > b.status? -1 : 1));
+  process(id:string|undefined){
+    if(id)
+      this.ordersAPI.processOrder(id).subscribe();
+    
+    window.location.reload();
   }
 
-  delete(product:any){
-    let id = product.id;
-    this.orders.forEach((order,index)=>{
-      if(order.id==id) this.orders.splice(index,1);
-    });
+  delete(id:string|undefined){
+    if(id)
+      this.ordersAPI.deleteOrder(id).subscribe();
+    window.location.reload();
   }
 
 }
