@@ -23,6 +23,9 @@ app.use('/api/v1/admin',adminRoutes);
 const orderRoutes = require('./routes/orderRoutes')
 app.use('/api/v1/orders',orderRoutes);
 
+const checkoutRoutes = require('./routes/checkoutRoutes')
+app.use('/api/v1/checkout',checkoutRoutes);
+
 app.listen(3600, function(){
     console.log("server started in port 3600");
 })

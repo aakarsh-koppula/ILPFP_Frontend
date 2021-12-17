@@ -20,7 +20,7 @@ export class ManageProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productsAPI.getProducts().subscribe((response:Product[])=>{
       this.products = response;
-     })
+    })
   }
 
   deleteProduct(id:String|undefined){
