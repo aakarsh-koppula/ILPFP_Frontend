@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/products';
+import { IProductDetails } from 'src/app/models/products';
+
 //import { ShareDataService } from '../../../services/share-data.service'
 
 @Component({
@@ -9,7 +10,7 @@ import { Product } from 'src/app/models/products';
 })
 export class AddProductComponent implements OnInit {
 
-  public newProduct: Product;
+  public newProduct: IProductDetails;
 
   //private SharedData:ShareDataService
   constructor() { 

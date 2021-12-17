@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IFoodItem} from 'src/app/models/foodItem.model'
 import { Router } from '@angular/router';
+import { GetProductsService } from 'src/app/services/get-products.service';
+import { IProductDetails } from 'src/app/models/products';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +13,28 @@ export class HomeComponent implements OnInit {
 
   public fooditems: IFoodItem;
   public filteritem: string;
-  public itemarray: IFoodItem[];
-  constructor( private router: Router) {
+  public itemarray: IProductDetails[];
+  public category: String;
+
+  constructor( private router: Router, private menuservice: GetProductsService ) {
     this.fooditems = {} as IFoodItem;
     this.itemarray = [];
     this.filteritem="";
+    this.category = "";
    }
+
    //[(NgModel)] ="filteritem"
    //| foodItemFilter : filteritem
 
   ngOnInit(): void {
-    //this.initializeItems();
+    this.initializeItems();
   }
 
-  /* public initializeItems(){
-    this.menuservice.getProducts().subscribe((response:IFoodItem[])=>{
+  public initializeItems(){
+    this.menuservice.getProducts().subscribe((response:IProductDetails[])=>{
       this.itemarray = response;
     })
-  } */
+  }
 
   public goToCart(item : IFoodItem):void{
     this.router.navigate(['/cart'],{
@@ -59,4 +65,17 @@ export class HomeComponent implements OnInit {
   }
 
 
+  public navigateToResultsPage(query: String)
+  {
+    // we need to typecast to make typescript happy
+    this.category = query;
+    this.router.navigate(['searchresults'],
+      {
+        queryParams:
+        {
+          query: this.category
+        }
+      }
+    );
+  }
 }
