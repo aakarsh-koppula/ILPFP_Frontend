@@ -49,15 +49,15 @@ router.get('/:PRODUCT_ID', (req, res) => {
 })
 
 router.post('/category', (request, response) => {
-    productModel.find( {Category: {$regex: request.body.Category, $options: "$i"}}, (error, result) => {
-        if (error) 
-        { 
-            console.log(request.body);
-            throw error; 
-        }
-        else 
+    productModel.find( {category: {$regex: request.body.category, $options: "$i"}}, (error, result) => {
+        if (error)
         {
-            console.log(request.body.Category);
+            console.log(request.body);
+            throw error;
+        }
+        else
+        {
+            console.log(request.body.category);
             console.log(result);
             response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
             response.send(result);
