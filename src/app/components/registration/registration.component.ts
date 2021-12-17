@@ -24,6 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initReactiveForm();
+    console.log(document.cookie);
   }
 
   public initReactiveForm(){

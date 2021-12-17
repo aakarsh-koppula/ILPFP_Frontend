@@ -5,12 +5,12 @@
         <input type="text" id="login-email" name="email" formControlName="email" placeholder="email" [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['email'].errors}" required email>
         <div *ngIf="isFormSubmitted && userFormControls['email'].errors" class="invalid-feedback">
           <div *ngIf="userFormControls['email'].errors['required']">Email is required</div>
-          <div *ngIf="userFormControls['email'].errors['mail']">Please enter valid email</div>
+          <div *ngIf="userFormControls['email'].errors['email']">Please enter valid email</div>
         </div>
 
         <input type="text" id="login-password" name="password" formControlName="password" placeholder="password" [ngClass]="{ 'is-invalid': isFormSubmitted && userFormControls['password'].errors}" required>
         <div *ngIf="isFormSubmitted && userFormControls['password'].errors" class="invalid-feedback">
-          <div *ngIf="userFormControls['password'].errors['required']">Name is required</div>
+          <div *ngIf="userFormControls['password'].errors['required']">Password is required</div>
         </div>
   
         <input type="submit" id="login-submit" class="bg-success" [disabled]="!form.valid"  value="Log In">

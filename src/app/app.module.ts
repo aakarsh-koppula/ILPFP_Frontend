@@ -17,6 +17,8 @@ import { ManageOrderComponent } from './components/manage-order/manage-order.com
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { HomeComponent } from './components/home/home.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { SearchPricePipe } from './pipes/search-price.pipe';
+import { SearchCategoriesPipe } from './pipes/search-categories.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     ManageOrderComponent,
     ManageProductsComponent,
     HomeComponent,
-    EditProductComponent
+    EditProductComponent,
+    SearchPricePipe,
+    SearchCategoriesPipe
   ],
   imports: [
     BrowserModule,

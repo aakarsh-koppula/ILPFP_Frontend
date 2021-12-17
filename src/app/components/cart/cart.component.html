@@ -9,7 +9,21 @@
                     <div class="col align-self-center text-right text-muted">1 items</div>
                 </div>
             </div>
-            <div class="row border-top border-bottom" *ngIf="!deleted">
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let product of cart">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img name="foodimage" alt="Card image" class="img-fluid" [src]="product.image"></div>
+                        <div class="col">
+                            
+                            <div class="row">{{product.name}}</div>
+                        </div>
+                        <div class="col"> {{product.price | currency}} <button type="submit" (click)="deleteProduct(product)" class="close">&#10005;</button></div>
+                    </div>
+                </li>
+            </ul>
+            <button (click)="addProduct()">add product</button>
+            <!-- <div class="row border-top border-bottom" *ngIf="!deleted">
                 <div class="row main align-items-center">
                     <div class="col-2"><img name="foodimage" alt="Card image" class="img-fluid" [src]="itemDetails.imageUrl"></div>
                     <div class="col">
@@ -19,7 +33,7 @@
                     <div class="col"> {{itemDetails.cost | currency}} <button type="submit" (click)="hideorder()" class="close">&#10005;</button></div>
                 </div>
             </div>
-            
+             -->
             
             <div class="back-to-shop"><a href="/home">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
