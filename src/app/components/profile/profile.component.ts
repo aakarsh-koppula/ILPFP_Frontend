@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   public user: IUserData[];
   public updatedUser: any;
   public isFormActive: boolean;
+  public emailMajor!: string;
   constructor(private fb: FormBuilder, private userdata:UserDataService, private http: HttpClient) {
     this.isEditable = false;
     this.fullname = "";
@@ -32,11 +33,14 @@ export class ProfileComponent implements OnInit {
     this.user = [];
     this.isFormActive = false;
     this.updatedUser = {} ;
+
    }
 
   ngOnInit(): void {
     //this.profileForm = this.fb.group({});
-    this.initializeUserData();
+    this.emailMajor = document.cookie.substring(6);
+    console.log(this.emailMajor);
+    this.initializeUserData(this.emailMajor);
     this.initReactiveForm();
   }
 
@@ -49,8 +53,8 @@ export class ProfileComponent implements OnInit {
     })
     .catch()
   } */
-  public initializeUserData(){
-  this.userdata.getUserData('Thor@avengers.com').toPromise()
+  public initializeUserData(ema:String){
+  this.userdata.getUserData(ema).toPromise()
     .then( (data: IUserData[]) => 
     {
     this.user = data;
@@ -125,7 +129,7 @@ export class ProfileComponent implements OnInit {
         console.log("data");
     })
 
-    this.initializeUserData();
+    this.initializeUserData(this.emailMajor);
   }
 
 }

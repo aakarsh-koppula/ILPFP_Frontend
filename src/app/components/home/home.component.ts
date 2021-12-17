@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     })
   } */
 
-  public goToCart(item : IFoodItem):void{
+  /* public goToCart(item : IFoodItem):void{
     this.router.navigate(['/cart'],{
       queryParams:{
         id: item.id,
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
         imageUrl: "http://dummyimage.com/128x100.png/ff4444/ffffff"
       }
     })
-  }
+  } */
 
 
 }
