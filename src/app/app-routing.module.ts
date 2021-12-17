@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManageOrderComponent } from './components/manage-order/manage-order.component';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"addproduct", component: AddProductComponent},
   {path:"manageorders", component: ManageOrderComponent},
   {path:"manageproducts", component: ManageProductsComponent},
+  { path: 'manageproducts/:id/edit', component: EditProductComponent },
   {path:"**", redirectTo:"register", pathMatch:"full"}
 
 ];

@@ -12,14 +12,14 @@
 
         <label for="department">Department</label>
         <input type="text" class="form-control" id="department" name="department" placeholder="Department"
-        [(ngModel)]="newProduct.department" #department="ngModel" 
+        [(ngModel)]="newProduct.category" #department="ngModel" 
         [ngClass]="{'is-invalid':department.invalid}" required>
         <div *ngIf="department.invalid" class="invalid-feedback">
             <div *ngIf="department.errors?.['required']">Department is required</div>
         </div>
         <br>
 
-        <label for="discountPrice">Price</label>
+        <label for="price">Price</label>
         <input type="number" class="form-control" id="price" name="price" placeholder="Price"
         [(ngModel)]="newProduct.price" #price="ngModel" 
         [ngClass]="{'is-invalid':price.invalid}" required>
@@ -30,7 +30,7 @@
 
         <label for="discountPrice">Discount Price</label>
         <input type="number" class="form-control" id="discountPrice" name="discountPrice" placeholder="Discount Price"
-        [(ngModel)]="newProduct.discountPrice" #discountPrice="ngModel" 
+        [(ngModel)]="newProduct.discount" #discountPrice="ngModel" 
         [ngClass]="{'is-invalid':discountPrice.invalid}" >
         <div *ngIf="discountPrice.invalid" class="invalid-feedback">
             <div *ngIf="discountPrice.errors?.['discountSmallerThanPrice']">Discount price must be smaller than price</div>
@@ -58,7 +58,7 @@
 
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="isTopSelling" name="isTopSelling"
-            [(ngModel)]="newProduct.isTopSelling" #name="ngModel" >
+            [(ngModel)]="newProduct.isTopProduct" #name="ngModel" >
             <label class="form-check-label" for="isTopSelling">
                 Top Selling Product
             </label>
@@ -67,7 +67,6 @@
     <button type="submit" class="btn btn-primary"  [disabled]="!productForm.valid">Add New Product</button>
 
 </form>
-
-<div >
-    <span>{{newProduct|json}}</span>
-</div>
+<br>
+<br>
+<br>
