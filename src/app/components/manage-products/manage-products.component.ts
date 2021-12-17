@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+//import { ShareDataService } from 'src/app/services/share-data.service';
+import { IProductDetails } from 'src/app/models/products';
 import { ProductApiService } from 'src/app/services/product-api.service'
 import { Subscription } from 'rxjs';
-import { Product } from '../../models/product';
+// import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-manage-products',
@@ -9,7 +12,7 @@ import { Product } from '../../models/product';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
-  public products:Product[];
+  public products:IProductDetails[];
   public productsSubscription: Subscription;
 
   constructor(private productsAPI:ProductApiService) {
@@ -18,7 +21,7 @@ export class ManageProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsAPI.getProducts().subscribe((response:Product[])=>{
+    this.productsAPI.getProducts().subscribe((response:IProductDetails[])=>{
       this.products = response;
     })
   }

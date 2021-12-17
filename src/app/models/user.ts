@@ -10,4 +10,5 @@ export interface IUserData
     city:String;
     state:String;
     zip:String;
+    image:String;
 }

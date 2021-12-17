@@ -9,7 +9,7 @@ import {HttpClient } from '@angular/common/http';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  public img!: String;
   public formfirstname!: String;
   public formlastname!: String;
   public formphone!: String;
@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   public formcity!: String;
   public formstate!: String;
   public formzip!: String;
+  public formimage!: String;
+  public image!: String;
   public profileForm: FormGroup;
   public isEditable: boolean;
   public fullname: string;
@@ -68,6 +70,8 @@ export class ProfileComponent implements OnInit {
     this.formcity = this.user[0].city;
     this.formstate = this.user[0].state;
     this.formzip = this.user[0].zip;
+    this.formimage = this.user[0].image;
+
     })
     .catch(message => console.log('Error: ' + message.status + ' ' + message.statusText));
   }
@@ -104,6 +108,7 @@ export class ProfileComponent implements OnInit {
 
   public onUpdate(){
     
+    console.log(this.img);
     this.formfirstname = this.profileForm.controls['firstName'].value;
     this.formlastname = this.profileForm.controls['lastName'].value;
     this.formphone = this.profileForm.controls['phone'].value;
@@ -111,6 +116,7 @@ export class ProfileComponent implements OnInit {
     this.formcity = this.profileForm.controls['city'].value;
     this.formstate = this.profileForm.controls['state'].value;
     this.formzip = this.profileForm.controls['zip'].value;
+    this.formimage = this.img;
 
     this.updatedUser.firstname = this.formfirstname;
     this.updatedUser.lastname = this.formlastname;
@@ -120,6 +126,7 @@ export class ProfileComponent implements OnInit {
     this.updatedUser.city = this.formcity;
     this.updatedUser.state = this.formstate;
     this.updatedUser.zip = this.formzip;
+    this.updatedUser.image = this.formimage
 
     this.fullname = this.formfirstname + ' '+ this.formlastname
     this.isFormActive = false;

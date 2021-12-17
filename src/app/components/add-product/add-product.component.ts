@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { IProductDetails } from 'src/app/models/products';
+//import { ShareDataService } from '../../../services/share-data.service'
 import { ProductApiService } from 'src/app/services/product-api.service';
 import { Subscription } from 'rxjs';
-import { Product } from '../../models/product';
+//import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-add-product',
@@ -10,7 +12,8 @@ import { Product } from '../../models/product';
 })
 export class AddProductComponent implements OnInit {
 
-  public newProduct: Product;
+  public newProduct: IProductDetails;
+  //public newProduct: Product;
   public productsSubscription: Subscription;
 
   constructor(private productsAPI:ProductApiService) { 
